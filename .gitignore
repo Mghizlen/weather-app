@@ -53,10 +53,4 @@ coverage/
 *.pem
 .cache/
 
-# Screenshots (may contain sensitive info)
-screenshots/
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.webp
+
