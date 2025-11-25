@@ -1,0 +1,259 @@
+# MERN Weather Dashboard
+
+A production-ready, full-stack Weather Dashboard built with MongoDB, Express, React, Node.js, and TypeScript. Features real-time weather data, 5-day forecasts, city search with autocomplete, offline PWA support, and secure authentication.
+
+![Weather Dashboard](https://img.shields.io/badge/React-18-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Node](https://img.shields.io/badge/Node-20+-green) ![MongoDB](https://img.shields.io/badge/MongoDB-7-green)
+
+## ✨ Features
+
+- 🌍 **Geolocation-based weather** - Automatic location detection
+- 🌤️ **Current weather conditions** - Real-time data from OpenWeather API
+- 📅 **5-day forecast** - Weather predictions in 3-hour intervals
+- 🔍 **City search** - Autocomplete with debounced search
+- 💾 **Offline support** - PWA with Service Worker caching
+- 🔐 **JWT Authentication** - Secure user registration and login
+- ⭐ **Favorite locations** - Save and manage favorite cities
+- 📱 **Fully responsive** - Mobile, tablet, and desktop optimized
+- 🎨 **Beautiful UI** - Tailwind CSS with smooth animations
+- ♿ **Accessible** - WCAG AA compliant
+- 🚀 **Production-ready** - Rate limiting, security headers, error handling
+
+## 📸 Screenshots
+
+[Add screenshots of your application here]
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+- React 18 with TypeScript
+- Vite (build tool)
+- Tailwind CSS
+- Axios for API calls
+- Lottie React for animations
+
+**Backend:**
+- Node.js + Express
+- TypeScript
+- MongoDB + Mongoose
+- JWT authentication
+- Bcrypt for password hashing
+- Helmet (security)
+- Express Rate Limit
+
+**APIs:**
+- OpenWeather Current Weather API (free tier)
+- OpenWeather 5 Day / 3 Hour Forecast API (free tier)
+- OpenWeather Geocoding API
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 20+ installed
+- MongoDB (local or Atlas account)
+- OpenWeather API key ([Get free key](https://openweathermap.org/api))
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone <your-repo-url>
+cd weather-app
+```
+
+2. **Install backend dependencies**
+```bash
+cd backend
+npm install
+```
+
+3. **Install frontend dependencies**
+```bash
+cd ../frontend
+npm install
+```
+
+4. **Setup environment variables**
+
+Create `backend/.env` from `.env.example`:
+```env
+PORT=5000
+NODE_ENV=development
+MONGODB_URI=mongodb://localhost:27017/weather-dashboard
+OPENWEATHER_API_KEY=your_api_key_here
+JWT_SECRET=your_random_secret_key
+JWT_EXPIRES_IN=7d
+CACHE_TTL_SECONDS=300
+CORS_ORIGIN=http://localhost:5173
+```
+
+5. **Start development servers**
+
+**Option A: Using the run script (Linux/Mac)**
+```bash
+chmod +x scripts/run-local.sh
+./scripts/run-local.sh
+```
+
+**Option B: Manual start (Windows/All platforms)**
+```powershell
+# Terminal 1 - Backend
+cd backend
+npm run dev
+
+# Terminal 2 - Frontend
+cd frontend
+npm run dev
+```
+
+6. **Access the application**
+- Frontend: http://localhost:5173
+- Backend: http://localhost:5000
+- API Health: http://localhost:5000/api/health
+
+## 📁 Project Structure
+
+```
+weather-app/
+├── backend/                # Backend Express API
+│   ├── src/
+│   │   ├── controllers/    # Route controllers
+│   │   ├── models/         # Mongoose models
+│   │   ├── routes/         # API routes
+│   │   ├── services/       # Business logic
+│   │   ├── middleware/     # Custom middleware
+│   │   ├── app.ts          # Express app config
+│   │   └── server.ts       # Server entry point
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── .env.example
+├── frontend/               # Frontend React app
+│   ├── src/
+│   │   ├── components/     # React components
+│   │   ├── pages/          # Page components
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── lib/            # Utilities and API client
+│   │   ├── types/          # TypeScript types
+│   │   ├── assets/         # Static assets
+│   │   ├── App.tsx         # Root component
+│   │   └── main.tsx        # Entry point
+│   ├── public/             # Public assets
+│   ├── package.json
+│   ├── vite.config.ts
+│   └── tailwind.config.js
+├── scripts/                # Utility scripts
+│   ├── run-local.sh        # Start dev servers
+│   └── seed-favorites.ts   # Seed database
+├── SETUP.md                # Setup instructions
+└── README.md               # This file
+```
+
+## 🔌 API Endpoints
+
+### Weather
+- `GET /api/health` - Health check
+- `GET /api/weather/current?lat=&lon=&units=` - Get current weather and forecast
+- `GET /api/weather/search?q=` - Search cities (autocomplete)
+
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login user
+- `GET /api/auth/me` - Get current user (requires auth)
+
+### Locations
+- `POST /api/location/save` - Save favorite location (requires auth)
+- `GET /api/location/favorites` - Get user's favorites (requires auth)
+- `DELETE /api/location/favorites/:id` - Delete favorite (requires auth)
+
+## 🧪 Testing
+
+**Backend tests:**
+```bash
+cd backend
+npm test
+npm run test:watch
+```
+
+**Frontend tests:**
+```bash
+cd frontend
+npm test
+npm run test:watch
+```
+
+## 🚢 Deployment
+
+### Frontend (Vercel)
+1. Push code to GitHub
+2. Connect repository to Vercel
+3. Set build command: `cd frontend && npm run build`
+4. Set output directory: `frontend/dist`
+5. Add environment variable: `VITE_API_URL=<your-backend-url>`
+
+### Backend (Render/Railway/Heroku)
+1. Push code to GitHub
+2. Connect repository to hosting platform
+3. Set build command: `cd backend && npm run build`
+4. Set start command: `cd backend && npm start`
+5. Add all environment variables from `.env.example`
+
+### Database (MongoDB Atlas)
+1. Create free cluster at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+2. Get connection string
+3. Add to backend `MONGODB_URI` environment variable
+
+## 🎨 Lottie Animations
+
+The app supports animated weather icons using Lottie. To add animations:
+
+1. Download free weather animations from [LottieFiles](https://lottiefiles.com/)
+2. Save JSON files in `frontend/src/assets/lottie/`
+3. Update imports in `frontend/src/mapIcons.ts`
+
+Recommended animations:
+- clear-day.json
+- clear-night.json
+- cloudy.json
+- rainy.json
+- snowy.json
+- thunderstorm.json
+- mist.json
+
+## 🔒 Security Features
+
+- JWT token authentication
+- Password hashing with bcrypt
+- Rate limiting on all routes
+- Helmet security headers
+- CORS protection
+- Input validation and sanitization
+- MongoDB injection prevention
+- XSS protection
+
+## 📝 License
+
+MIT License - feel free to use this project for learning or production.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 🐛 Known Issues
+
+- TypeScript errors before `npm install` (expected)
+- Lottie animations require manual download
+- Service Worker only works in production build
+
+## 📧 Support
+
+For issues, questions, or suggestions, please open an issue on GitHub.
+
+## 🙏 Acknowledgments
+
+- Weather data from [OpenWeather](https://openweathermap.org/)
+- Icons and animations from [LottieFiles](https://lottiefiles.com/)
+- Built with [Create React App](https://create-react-app.dev/) and [Express](https://expressjs.com/)
+
+---
+
+Made with ❤️ using MERN Stack
