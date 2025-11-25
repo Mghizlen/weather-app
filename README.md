@@ -64,7 +64,7 @@ A production-ready, full-stack Weather Dashboard built with MongoDB, Express, Re
 
 1. **Clone the repository**
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Mghizlen/weather-app.git
 cd weather-app
 ```
 
