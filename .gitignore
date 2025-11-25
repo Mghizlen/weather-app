@@ -5,12 +5,25 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Environment variables
+# Environment variables - NEVER COMMIT THESE
 .env
 .env.local
+.env.development
 .env.development.local
+.env.test
 .env.test.local
+.env.production
 .env.production.local
+backend/.env
+frontend/.env
+*.env
+
+# API Keys and Secrets - CRITICAL
+**/secrets/
+**/*secret*
+**/*key*
+**/*password*
+**/*credentials*
 
 # Build outputs
 dist/
@@ -39,3 +52,11 @@ coverage/
 # Misc
 *.pem
 .cache/
+
+# Screenshots (may contain sensitive info)
+screenshots/
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp

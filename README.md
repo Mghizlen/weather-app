@@ -1,26 +1,33 @@
-# MERN Weather Dashboard
+# 🌤️ MERN Weather Dashboard
 
-A production-ready, full-stack Weather Dashboard built with MongoDB, Express, React, Node.js, and TypeScript. Features real-time weather data, 5-day forecasts, city search with autocomplete, offline PWA support, and secure authentication.
+A production-ready, full-stack Weather Dashboard built with MongoDB, Express, React, Node.js, and TypeScript. Features real-time weather data from **Weatherstack API**, 5-day forecasts, animated Lottie weather icons, offline PWA support, and secure JWT authentication.
 
-![Weather Dashboard](https://img.shields.io/badge/React-18-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Node](https://img.shields.io/badge/Node-20+-green) ![MongoDB](https://img.shields.io/badge/MongoDB-7-green)
+![Weather Dashboard](https://img.shields.io/badge/React-18-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Node](https://img.shields.io/badge/Node-20+-green) ![MongoDB](https://img.shields.io/badge/MongoDB-7-green) ![Weatherstack](https://img.shields.io/badge/API-Weatherstack-orange)
 
 ## ✨ Features
 
-- 🌍 **Geolocation-based weather** - Automatic location detection
-- 🌤️ **Current weather conditions** - Real-time data from OpenWeather API
-- 📅 **5-day forecast** - Weather predictions in 3-hour intervals
-- 🔍 **City search** - Autocomplete with debounced search
-- 💾 **Offline support** - PWA with Service Worker caching
-- 🔐 **JWT Authentication** - Secure user registration and login
-- ⭐ **Favorite locations** - Save and manage favorite cities
-- 📱 **Fully responsive** - Mobile, tablet, and desktop optimized
-- 🎨 **Beautiful UI** - Tailwind CSS with smooth animations
-- ♿ **Accessible** - WCAG AA compliant
+- 🌍 **Geolocation-based weather** - Automatic location detection with browser API
+- 🌡️ **Current weather conditions** - Real-time data from Weatherstack API
+- 📅 **24-hour & 5-day forecast** - Weather predictions with 3-hour intervals
+- 🎨 **Animated weather icons** - Beautiful Lottie animations for all weather conditions
+- 🔍 **City search** - Smart search with debounced autocomplete
+- 💾 **Offline support** - Progressive Web App with Service Worker caching
+- 🔐 **JWT Authentication** - Secure user registration and login system
+- ⭐ **Favorite locations** - Save and manage your favorite cities
+- 📱 **Fully responsive** - Optimized for mobile, tablet, and desktop
+- 🎭 **Beautiful UI** - Modern design with Tailwind CSS and smooth animations
+- ♿ **Accessible** - WCAG AA compliant with ARIA labels
 - 🚀 **Production-ready** - Rate limiting, security headers, error handling
+- 💨 **Fast & efficient** - MongoDB caching with 5-minute TTL
 
 ## 📸 Screenshots
 
-[Add screenshots of your application here]
+### Main Dashboard
+![Weather Dashboard - Jundubah, Tunisia showing 11°C with cloudy conditions, humidity 43%, wind 2 m/s, and 24-hour forecast](screenshots/dashboard.png)
+
+*Current weather display with animated icons, detailed metrics (humidity, wind, pressure, visibility), and hourly forecast carousel*
+
+
 
 ## 🛠️ Tech Stack
 
@@ -41,9 +48,9 @@ A production-ready, full-stack Weather Dashboard built with MongoDB, Express, Re
 - Express Rate Limit
 
 **APIs:**
-- OpenWeather Current Weather API (free tier)
-- OpenWeather 5 Day / 3 Hour Forecast API (free tier)
-- OpenWeather Geocoding API
+- Weatherstack Current Weather API (free tier)
+- Custom forecast generation (mock 5-day data)
+- City search with fallback
 
 ## 🚀 Quick Start
 
@@ -51,7 +58,7 @@ A production-ready, full-stack Weather Dashboard built with MongoDB, Express, Re
 
 - Node.js 20+ installed
 - MongoDB (local or Atlas account)
-- OpenWeather API key ([Get free key](https://openweathermap.org/api))
+- Weatherstack API key ([Get free key](https://weatherstack.com/))
 
 ### Installation
 
@@ -80,11 +87,16 @@ Create `backend/.env` from `.env.example`:
 PORT=5000
 NODE_ENV=development
 MONGODB_URI=mongodb://localhost:27017/weather-dashboard
-OPENWEATHER_API_KEY=your_api_key_here
-JWT_SECRET=your_random_secret_key
+WEATHERSTACK_API_KEY=your_api_key_here
+JWT_SECRET=your_random_secret_jwt_key_change_this
 JWT_EXPIRES_IN=7d
 CACHE_TTL_SECONDS=300
 CORS_ORIGIN=http://localhost:5173
+```
+
+Create `frontend/.env`:
+```env
+VITE_API_URL=http://localhost:5000
 ```
 
 5. **Start development servers**
@@ -204,20 +216,18 @@ npm run test:watch
 
 ## 🎨 Lottie Animations
 
-The app supports animated weather icons using Lottie. To add animations:
+The app includes beautiful animated weather icons using Lottie:
 
-1. Download free weather animations from [LottieFiles](https://lottiefiles.com/)
-2. Save JSON files in `frontend/src/assets/lottie/`
-3. Update imports in `frontend/src/mapIcons.ts`
+**Included animations:**
+- ☀️ **Weather-sunny.json** - Clear day with animated sun
+- 🌙 **Weather-night.json** - Clear night with moon
+- ☁️ **partly cloudy-day-fog.json** - Cloudy/foggy conditions
+- 🌧️ **rainy icon.json** - Rain and drizzle
+- ❄️ **snow icon.json** - Snow conditions
+- ⛈️ **Weather-thunder.json** - Thunderstorms
+- 💨 **Weather-windy.json** - Windy weather
 
-Recommended animations:
-- clear-day.json
-- clear-night.json
-- cloudy.json
-- rainy.json
-- snowy.json
-- thunderstorm.json
-- mist.json
+All animations are stored in `frontend/src/assets/lottie/` and automatically mapped to weather conditions in `frontend/src/mapIcons.ts`.
 
 ## 🔒 Security Features
 
@@ -250,10 +260,15 @@ For issues, questions, or suggestions, please open an issue on GitHub.
 
 ## 🙏 Acknowledgments
 
-- Weather data from [OpenWeather](https://openweathermap.org/)
-- Icons and animations from [LottieFiles](https://lottiefiles.com/)
-- Built with [Create React App](https://create-react-app.dev/) and [Express](https://expressjs.com/)
+- Weather data from [Weatherstack](https://weatherstack.com/)
+- Animated icons from [LottieFiles](https://lottiefiles.com/)
+- Built with [Vite](https://vitejs.dev/), [React](https://react.dev/), and [Express](https://expressjs.com/)
+- UI styled with [Tailwind CSS](https://tailwindcss.com/)
 
 ---
 
-Made with ❤️ using MERN Stack
+Made with ❤️ using MERN Stack by [Mghizlen](https://github.com/Mghizlen)
+
+**Live Demo:** Coming soon! 🚀
+
+**Repository:** [github.com/Mghizlen/weather-app](https://github.com/Mghizlen/weather-app)
