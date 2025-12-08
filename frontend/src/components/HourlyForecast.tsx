@@ -36,10 +36,10 @@ export const HourlyForecast: React.FC<HourlyForecastProps> = ({
           {hourlyData.map((item, index) => {
             // Get timezone from forecast city data
             const timezone = forecast.city?.timezone || 0;
-            const localTime = item.dt + timezone;
-            const date = new Date(localTime * 1000);
-            const hour = date.getUTCHours();
-            const isDay = hour >= 6 && hour < 18;
+            const sunrise = forecast.city?.sunrise || 0;
+            const sunset = forecast.city?.sunset || 0;
+            // Use actual sunrise/sunset times instead of hardcoded 6 AM - 6 PM
+            const isDay = item.dt >= sunrise && item.dt < sunset;
             const time = formatTime(item.dt, timezone);
 
             return (

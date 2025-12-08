@@ -172,7 +172,8 @@ class WeatherstackService {
     const lon = parseFloat(location.lon);
     
     // Parse timezone offset from UTC (e.g., "+1" or "-5")
-    const timezoneOffset = parseInt(location.utc_offset) * 3600; // Convert to seconds
+    const offsetHours = parseInt(location.utc_offset, 10);
+    const timezoneOffset = isNaN(offsetHours) ? 0 : offsetHours * 3600; // Convert to seconds
     
     // Map weather code to description
     const weatherMain = this.getWeatherMain(current.weather_code);
