@@ -1,14 +1,14 @@
 # 🌤️ MERN Weather Dashboard
 
-A production-ready, full-stack Weather Dashboard built with MongoDB, Express, React, Node.js, and TypeScript. Features real-time weather data from **Weatherstack API**, 5-day forecasts, animated Lottie weather icons, offline PWA support, and secure JWT authentication.
+A production-ready, full-stack Weather Dashboard built with MongoDB, Express, React, Node.js, and TypeScript. Features real-time weather data from **OpenWeather API**, accurate 5-day forecasts with 3-hour intervals, animated Lottie weather icons, offline PWA support, and secure JWT authentication.
 
-![Weather Dashboard](https://img.shields.io/badge/React-18-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Node](https://img.shields.io/badge/Node-20+-green) ![MongoDB](https://img.shields.io/badge/MongoDB-7-green) ![Weatherstack](https://img.shields.io/badge/API-Weatherstack-orange)
+![Weather Dashboard](https://img.shields.io/badge/React-18-blue) ![TypeScript](https://img.shields.io/badge/TypeScript-5-blue) ![Node](https://img.shields.io/badge/Node-20+-green) ![MongoDB](https://img.shields.io/badge/MongoDB-7-green) ![OpenWeather](https://img.shields.io/badge/API-OpenWeather-orange)
 
 ## ✨ Features
 
 - 🌍 **Geolocation-based weather** - Automatic location detection with browser API
-- 🌡️ **Current weather conditions** - Real-time data from Weatherstack API
-- 📅 **24-hour & 5-day forecast** - Weather predictions with 3-hour intervals
+- 🌡️ **Current weather conditions** - Real-time accurate data from OpenWeather API
+- 📅 **40-point forecast** - 5-day weather predictions with 3-hour intervals (120 hours)
 - 🎨 **Animated weather icons** - Beautiful Lottie animations for all weather conditions
 - 🔍 **City search** - Smart search with debounced autocomplete
 - 💾 **Offline support** - Progressive Web App with Service Worker caching
@@ -48,9 +48,9 @@ A production-ready, full-stack Weather Dashboard built with MongoDB, Express, Re
 - Express Rate Limit
 
 **APIs:**
-- Weatherstack Current Weather API (free tier)
-- Custom forecast generation (mock 5-day data)
-- City search with fallback
+- OpenWeather Current Weather API (free tier)
+- OpenWeather 5 Day / 3 Hour Forecast API (free tier)
+- OpenWeather Geocoding API for city search
 
 ## 🚀 Quick Start
 
@@ -58,7 +58,7 @@ A production-ready, full-stack Weather Dashboard built with MongoDB, Express, Re
 
 - Node.js 20+ installed
 - MongoDB (local or Atlas account)
-- Weatherstack API key ([Get free key](https://weatherstack.com/))
+- OpenWeather API key ([Get free key](https://openweathermap.org/api))
 
 ### Installation
 
@@ -87,7 +87,7 @@ Create `backend/.env` from `.env.example`:
 PORT=5000
 NODE_ENV=development
 MONGODB_URI=mongodb://localhost:27017/weather-dashboard
-WEATHERSTACK_API_KEY=your_api_key_here
+OPENWEATHER_API_KEY=your_api_key_here
 JWT_SECRET=your_random_secret_jwt_key_change_this
 JWT_EXPIRES_IN=7d
 CACHE_TTL_SECONDS=300
@@ -260,7 +260,7 @@ For issues, questions, or suggestions, please open an issue on GitHub.
 
 ## 🙏 Acknowledgments
 
-- Weather data from [Weatherstack](https://weatherstack.com/)
+- Weather data from [OpenWeather](https://openweathermap.org/)
 - Animated icons from [LottieFiles](https://lottiefiles.com/)
 - Built with [Vite](https://vitejs.dev/), [React](https://react.dev/), and [Express](https://expressjs.com/)
 - UI styled with [Tailwind CSS](https://tailwindcss.com/)

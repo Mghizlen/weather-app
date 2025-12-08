@@ -171,6 +171,9 @@ class WeatherstackService {
     const lat = parseFloat(location.lat);
     const lon = parseFloat(location.lon);
     
+    // Parse timezone offset from UTC (e.g., "+1" or "-5")
+    const timezoneOffset = parseInt(location.utc_offset) * 3600; // Convert to seconds
+    
     // Map weather code to description
     const weatherMain = this.getWeatherMain(current.weather_code);
     
@@ -200,10 +203,10 @@ class WeatherstackService {
       dt: location.localtime_epoch,
       sys: {
         country: location.country,
-        sunrise: location.localtime_epoch - 21600, // Approximate
-        sunset: location.localtime_epoch + 21600,
+        sunrise: location.localtime_epoch - 21600, // Approximate sunrise (6 hours before)
+        sunset: location.localtime_epoch + 21600, // Approximate sunset (6 hours after)
       },
-      timezone: 0,
+      timezone: timezoneOffset,
       id: 0,
       name: location.name,
       cod: 200,

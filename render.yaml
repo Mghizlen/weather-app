@@ -1,0 +1,26 @@
+# Render deployment configuration
+services:
+  - type: web
+    name: weather-app-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: cd backend && npm install && npm run build
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        sync: false
+      - key: OPENWEATHER_API_KEY
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CACHE_TTL_SECONDS
+        value: 300
+      - key: CORS_ORIGIN
+        sync: false

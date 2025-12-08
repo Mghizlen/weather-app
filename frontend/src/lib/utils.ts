@@ -22,13 +22,17 @@ export const formatWindSpeed = (speed: number, units: 'metric' | 'imperial' | 's
 
 /**
  * Format timestamp to time string
+ * @param timestamp Unix timestamp in seconds (UTC)
+ * @param timezone Timezone offset in seconds from UTC
  */
 export const formatTime = (timestamp: number, timezone: number = 0): string => {
+  // Convert UTC timestamp to local time by adding timezone offset
   const date = new Date((timestamp + timezone) * 1000);
   return date.toLocaleTimeString('en-US', {
     hour: '2-digit',
     minute: '2-digit',
     hour12: true,
+    timeZone: 'UTC', // Display as-is since we already adjusted for timezone
   });
 };
 

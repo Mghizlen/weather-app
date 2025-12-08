@@ -6,7 +6,7 @@ import { Response, NextFunction } from 'express';
 import { query, validationResult } from 'express-validator';
 import { AuthRequest } from '../middleware/auth';
 import { ApiError, asyncHandler } from '../middleware/errorHandler';
-import { weatherstackService as openWeatherService } from '../services/weatherstackService';
+import { openWeatherService } from '../services/openWeatherService';
 import { cacheService } from '../services/cacheService';
 
 /**

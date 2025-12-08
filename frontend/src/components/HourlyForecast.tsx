@@ -34,9 +34,13 @@ export const HourlyForecast: React.FC<HourlyForecastProps> = ({
       <div className="overflow-x-auto">
         <div className="flex gap-4 pb-2">
           {hourlyData.map((item, index) => {
-            const hour = new Date(item.dt * 1000).getHours();
+            // Get timezone from forecast city data
+            const timezone = forecast.city?.timezone || 0;
+            const localTime = item.dt + timezone;
+            const date = new Date(localTime * 1000);
+            const hour = date.getUTCHours();
             const isDay = hour >= 6 && hour < 18;
-            const time = formatTime(item.dt);
+            const time = formatTime(item.dt, timezone);
 
             return (
               <div
