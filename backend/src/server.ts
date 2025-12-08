@@ -6,7 +6,12 @@ import mongoose from 'mongoose';
 import createApp from './app';
 
 const PORT = process.env.PORT || 5000;
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/weather-dashboard';
+const MONGODB_URI = process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+  console.error('❌ MONGODB_URI environment variable is not defined');
+  process.exit(1);
+}
 
 /**
  * Connect to MongoDB database
