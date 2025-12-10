@@ -16,6 +16,9 @@ dotenv.config();
 const createApp = (): Application => {
   const app = express();
 
+  // Trust proxy - required for Render and rate limiting
+  app.set('trust proxy', 1);
+
   // Security middleware
   app.use(helmet({
     contentSecurityPolicy: {
@@ -30,9 +33,24 @@ const createApp = (): Application => {
   }));
 
   // CORS configuration
+  const allowedOrigins = [
+    'http://localhost:5173',
+    'https://weather-g3it32edi-ghizlens-projects.vercel.app',
+    process.env.CORS_ORIGIN
+  ].filter(Boolean);
+
   app.use(
     cors({
-      origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+      origin: (origin, callback) => {
+        // Allow requests with no origin (mobile apps, Postman, etc.)
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.some(allowed => origin.startsWith(allowed as string))) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
       credentials: true,
     })
   );
